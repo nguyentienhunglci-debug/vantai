@@ -4,126 +4,379 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vận Tải Toàn Quốc - Giao Hàng Siêu Tốc</title>
+    
     <style>
-        body {
+        /* --- BẮT ĐẦU CODE CSS --- */
+
+        /* --- NHÚNG FONT CHỮ HIỆN ĐẠI TỪ GOOGLE --- */
+        @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700&display=swap');
+
+        /* --- BIẾN MÀU (DỄ DÀNG THAY ĐỔI SAU NÀY) --- */
+        :root {
+            --primary-color: #0a2540; /* Xanh Navy Đậm */
+            --accent-color: #007bff;   /* Xanh Dương Sáng */
+            --text-color: #333;
+            --bg-light-gray: #f8f9fa;
+            --white-color: #ffffff;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+            --border-radius: 12px;
+        }
+
+        /* --- THIẾT LẬP CHUNG --- */
+        * {
+            box-sizing: border-box;
             margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
+            padding: 0;
         }
-        .header {
-            background-color: #004aad;
-            padding: 20px;
-            color: white;
-            text-align: center;
+
+        html {
+            scroll-behavior: smooth;
         }
-        .nav {
+
+        body {
+            font-family: 'Be Vietnam Pro', sans-serif;
+            background-color: var(--white-color);
+            color: var(--text-color);
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- HEADER CHÍNH (THANH ĐIỀU HƯỚNG) --- */
+        .main-header {
+            background-color: var(--white-color);
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
             display: flex;
-            justify-content: center;
-            background-color: #003580;
+            justify-content: space-between;
+            align-items: center;
         }
-        .nav a {
-            color: white;
-            padding: 14px 20px;
+
+        .logo {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: var(--primary-color);
             text-decoration: none;
-            display: block;
         }
-        .nav a:hover {
-            background-color: #002147;
+
+        .main-nav ul {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 30px;
         }
-        .hero {
-            text-align: center;
-            padding: 50px 20px;
-            background: linear-gradient(to right, #004aad, #0073e6);
-            color: white;
-        }
-        .hero h1 {
-            font-size: 2.5em;
-        }
-        .services {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            padding: 40px 20px;
-        }
-        .service-card {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            text-align: center;
-        }
-        .service-card h3 {
-            margin-top: 10px;
-            color: #004aad;
-        }
-        .cta {
-            text-align: center;
-            padding: 40px 20px;
-            background: #004aad;
-            color: white;
-        }
-        .cta button {
-            padding: 15px 30px;
-            background: #ffcc00;
-            border: none;
-            border-radius: 5px;
-            font-size: 1em;
+
+        .main-nav a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
             cursor: pointer;
         }
-        .cta button:hover {
-            background: #e6b800;
+
+        .main-nav a:hover {
+            color: var(--accent-color);
         }
-        .footer {
+
+        .nav-contact {
+            background-color: var(--accent-color);
+            color: var(--white-color) !important;
+            padding: 8px 20px;
+            border-radius: 50px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .nav-contact:hover {
+            background-color: #0056b3;
+            color: var(--white-color) !important;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            background-color: var(--bg-light-gray);
+            padding: 100px 0;
             text-align: center;
-            padding: 20px;
-            background: #003580;
-            color: white;
         }
+        .hero h1 { font-size: 3.5em; color: var(--primary-color); margin-bottom: 20px; font-weight: 700; }
+        .hero p { font-size: 1.25em; color: #555; max-width: 700px; margin: 0 auto 30px; }
+        .cta-button { display: inline-block; background: linear-gradient(90deg, var(--accent-color), #0056b3); color: var(--white-color); padding: 15px 35px; font-size: 1.1em; font-weight: 500; text-decoration: none; border-radius: 50px; transition: transform 0.3s ease, box-shadow 0.3s ease; box-shadow: 0 4px 15px rgba(0, 123, 255, 0.4); }
+        .cta-button:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0, 123, 255, 0.5); }
+
+        /* --- SECTION CHUNG --- */
+        .section { padding: 80px 0; }
+        .section-title { text-align: center; font-size: 2.8em; color: var(--primary-color); margin-bottom: 50px; font-weight: 700; }
+
+        /* --- LƯỚI DỊCH VỤ ĐƯỜNG BỘ --- */
+        .service-grid { display: grid; justify-content: center; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        .service-card { background-color: var(--white-color); border-radius: var(--border-radius); padding: 40px 30px; text-align: center; box-shadow: var(--shadow); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .service-card:hover { transform: translateY(-10px); box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1); }
+        .service-card .icon { font-size: 3em; color: var(--accent-color); margin-bottom: 20px; }
+        .service-card h3 { font-size: 1.5em; color: var(--primary-color); margin-bottom: 15px; }
+        .service-card p { color: #666; }
+        
+        /* --- BẢNG GIÁ --- */
+        .pricing-table { width: 100%; border-collapse: collapse; margin-top: 30px; box-shadow: var(--shadow); border-radius: var(--border-radius); overflow: hidden; }
+        .pricing-table thead tr { background-color: var(--primary-color); color: var(--white-color); text-align: left; font-weight: 700; }
+        .pricing-table th, .pricing-table td { padding: 18px 20px; }
+        .pricing-table tbody tr { border-bottom: 1px solid #dddddd; transition: background-color 0.3s ease; }
+        .pricing-table tbody tr:nth-of-type(even) { background-color: var(--bg-light-gray); }
+        .pricing-table tbody tr:last-of-type { border-bottom: 2px solid var(--accent-color); }
+        .pricing-table tbody tr:hover { background-color: #e9ecef; }
+
+        /* --- TRA CƯỚC CHI TIẾT --- */
+        .detailed-pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-top: 20px; }
+        .price-link { display: block; background-color: var(--white-color); color: var(--primary-color); padding: 25px 20px; text-align: center; text-decoration: none; font-size: 1.2em; font-weight: 700; border-radius: var(--border-radius); box-shadow: var(--shadow); border: 2px solid var(--bg-light-gray); transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease; }
+        .price-link:hover { transform: translateY(-8px); box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12); background-color: var(--accent-color); color: var(--white-color); border-color: var(--accent-color); }
+
+        /* --- FOOTER --- */
+        .footer { background-color: var(--primary-color); color: var(--white-color); text-align: center; padding: 40px 0; }
+        
+        /* --- NÚT BẤM ZALO & GỌI ĐIỆN --- */
+        .floating-buttons { position: fixed; bottom: 25px; right: 25px; z-index: 1010; display: flex; flex-direction: column; gap: 15px; }
+        .floating-buttons a { text-decoration: none; }
+        .zalo-button { display: flex; justify-content: center; align-items: center; width: 60px; height: 60px; background-color: #0068ff; border-radius: 50%; box-shadow: 0 4px 15px rgba(0, 104, 255, 0.5); transition: transform 0.3s ease; }
+        .zalo-button:hover { transform: scale(1.1); }
+        .zalo-button img { width: 35px; height: auto; }
+        .phone-button { display: flex; align-items: center; background-color: #e62143; color: white; padding: 8px 20px 8px 8px; border-radius: 50px; box-shadow: 0 4px 15px rgba(230, 33, 67, 0.5); font-size: 1.1em; font-weight: 700; transition: transform 0.3s ease; }
+        .phone-button:hover { transform: scale(1.05); }
+        .phone-icon-wrapper { width: 45px; height: 45px; background-color: white; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin-right: 10px; position: relative; }
+        .phone-icon-wrapper svg { width: 24px; height: 24px; fill: #e62143; }
+        .phone-icon-wrapper::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(230, 33, 67, 0.5); border-radius: 50%; animation: pulse 2s infinite; z-index: -1; }
+        @keyframes pulse { 0% { transform: scale(0.9); opacity: 0.7; } 70% { transform: scale(1.5); opacity: 0; } 100% { transform: scale(0.9); opacity: 0; } }
+        
+        /* --- CSS CHO POP-UP LIÊN HỆ --- */
+        .contact-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.3s ease, visibility 0s 0.3s;
+        }
+        .contact-modal-overlay.active {
+            visibility: visible;
+            opacity: 1;
+            transition: opacity 0.3s ease;
+        }
+        .contact-modal {
+            background-color: var(--white-color);
+            padding: 30px 40px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+        .contact-modal-overlay.active .contact-modal {
+            transform: scale(1);
+        }
+        .close-modal {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: transparent;
+            border: none;
+            font-size: 2.5em;
+            font-weight: 300;
+            cursor: pointer;
+            color: #aaa;
+            line-height: 1;
+        }
+        .close-modal:hover { color: #333; }
+        .contact-modal h2 {
+            font-size: 2em;
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        .contact-info-line {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            font-size: 1.1em;
+        }
+        .contact-info-line .icon {
+            font-size: 1.5em;
+            margin-right: 15px;
+            width: 30px;
+            text-align: center;
+            color: var(--accent-color);
+        }
+
+        /* --- KẾT THÚC CODE CSS --- */
     </style>
 </head>
 <body>
 
-    <div class="header">
-        <h1>Vận Tải Toàn Quốc</h1>
-        <p>Giao hàng nhanh chóng - An toàn - Tiện lợi</p>
-    </div>
-
-    <div class="nav">
-        <a href="#">Trang chủ</a>
-        <a href="#">Dịch vụ</a>
-        <a href="#">Bảng giá</a>
-        <a href="#">Liên hệ</a>
-    </div>
-
-    <div class="hero">
-        <h1>Giải pháp vận chuyển toàn diện cho bạn</h1>
-        <p>Dịch vụ giao hàng siêu tốc trong ngày - Phủ sóng toàn quốc</p>
-    </div>
-
-    <div class="services">
-        <div class="service-card">
-            <h3>Giao Hàng Nội Thành</h3>
-            <p>Nhanh chóng trong 2h, tiết kiệm chi phí, an toàn tuyệt đối.</p>
+    <header class="main-header">
+        <div class="container header-container">
+            <a href="#" class="logo">
+                🚛 Vận Tải Toàn Quốc
+            </a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#dich-vu">Dịch Vụ</a></li>
+                    <li><a href="#bang-gia">Bảng Giá</a></li>
+                    <li><a href="#tra-cuoc">Tra Cước</a></li>
+                    <li><a id="open-contact-modal" class="nav-contact">Liên Hệ</a></li>
+                </ul>
+            </nav>
         </div>
-        <div class="service-card">
-            <h3>Giao Hàng Liên Tỉnh</h3>
-            <p>Kết nối 63 tỉnh thành, tốc độ và uy tín hàng đầu Việt Nam.</p>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Vận Tải Siêu Tốc</h1>
+            <p>Giải pháp vận chuyển hàng hóa chuyên nghiệp, an toàn và nhanh chóng trên khắp 63 tỉnh thành.</p>
+            <a href="#dich-vu" class="cta-button">Khám Phá Dịch Vụ</a>
         </div>
-        <div class="service-card">
-            <h3>Vận Tải Hàng Nặng</h3>
-            <p>Xe tải đa dạng, phù hợp với mọi nhu cầu vận chuyển.</p>
+    </section>
+
+    <main>
+        <section id="dich-vu" class="section">
+            <div class="container">
+                <h2 class="section-title">Dịch Vụ Vận Tải Đường Bộ</h2>
+                <div class="service-grid">
+                    <div class="service-card">
+                        <div class="icon">🚚</div>
+                        <h3>Vận Chuyển Bằng Xe Tải</h3>
+                        <p>Hệ thống xe tải hiện đại, đa dạng tải trọng, đáp ứng mọi nhu cầu vận chuyển Bắc - Nam và nội thành.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="icon">📦</div>
+                        <h3>Vận Chuyển Bằng Container</h3>
+                        <p>Giải pháp tối ưu cho hàng hóa số lượng lớn, hàng công kềnh, đảm bảo an toàn và tiết kiệm chi phí.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="bang-gia" class="section" style="background-color: var(--bg-light-gray);">
+            <div class="container">
+                <h2 class="section-title">Bảng Giá Tham Khảo</h2>
+                <table class="pricing-table">
+                    <thead>
+                        <tr>
+                            <th>Tuyến Vận Chuyển</th>
+                            <th>Hàng Nặng (VND/kg)</th>
+                            <th>Hàng Nhẹ (VND/m³)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr> <td><strong>Hà Nội → TP. Hồ Chí Minh</strong></td> <td>2.500 - 3.500</td> <td>550.000 - 650.000</td> </tr>
+                        <tr> <td><strong>TP. Hồ Chí Minh → Hà Nội</strong></td> <td>2.800 - 3.800</td> <td>600.000 - 700.000</td> </tr>
+                        <tr> <td><strong>Hà Nội → Đà Nẵng</strong></td> <td>1.800 - 2.500</td> <td>400.000 - 500.000</td> </tr>
+                        <tr> <td><strong>TP. Hồ Chí Minh → Đà Nẵng</strong></td> <td>1.700 - 2.400</td> <td>380.000 - 480.000</td> </tr>
+                        <tr> <td><strong>Hà Nội → Cần Thơ</strong></td> <td>3.000 - 4.000</td> <td>650.000 - 750.000</td> </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="tra-cuoc" class="section">
+             <div class="container">
+                <h2 class="section-title">Tra Cước Vận Chuyển Chi Tiết</h2>
+                <div class="detailed-pricing-grid">
+                    <a href="#" class="price-link">Bảng Giá Đi Các Tỉnh Miền Bắc</a>
+                    <a href="#" class="price-link">Bảng Giá Đi Các Tỉnh Miền Trung</a>
+                    <a href="#" class="price-link">Bảng Giá Đi Các Tỉnh Miền Nam</a>
+                    <a href="#" class="price-link">Bảng Giá Đi Các Tỉnh Tây Nguyên</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Vận Tải Toàn Quốc. Uy tín tạo nên thương hiệu.</p>
+        </div>
+    </footer>
+
+    <div class="floating-buttons">
+        <a href="https://zalo.me/0902663896" target="_blank" class="zalo-button">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Icon_of_Zalo.svg/2048px-Icon_of_Zalo.svg.png" alt="Zalo">
+        </a>
+        <a href="tel:0902663896" class="phone-button">
+            <div class="phone-icon-wrapper">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M164.9 24.6c-7.7-18.6-28-28.5-47.4-23.2l-88 24C12.1 30.2 0 46 0 64C0 311.4 200.6 512 448 512c18 0 33.8-12.1 38.6-29.5l24-88c5.3-19.4-4.6-39.7-23.2-47.4l-96-40c-16.3-6.8-35.2-2.1-46.3 11.6L304.7 368C234.3 334.7 177.3 277.7 144 207.3L193.3 167c13.7-11.2 18.4-30 11.6-46.3l-40-96z"/></svg>
+            </div>
+            <span>0902 663 896</span>
+        </a>
+    </div>
+
+    <div class="contact-modal-overlay" id="contact-overlay">
+        <div class="contact-modal">
+            <button class="close-modal" id="close-contact-modal">&times;</button>
+            <h2>Thông Tin Liên Hệ</h2>
+            <div class="contact-info-line">
+                <span class="icon">🏢</span>
+                <span><strong>Công ty:</strong> TNHH Vận Tải Toàn Quốc</span>
+            </div>
+            <div class="contact-info-line">
+                <span class="icon">📍</span>
+                <span><strong>Địa chỉ:</strong> Số 1, Đường ABC, Phường XYZ, Lào Cai</span>
+            </div>
+            <div class="contact-info-line">
+                <span class="icon">📞</span>
+                <span><strong>Hotline:</strong> <a href="tel:0902663896">0902 663 896</a> (Mr. Tốc)</span>
+            </div>
+            <div class="contact-info-line">
+                <span class="icon">📧</span>
+                <span><strong>Email:</strong> lienhe@vantaivn.com</span>
+            </div>
+            <div class="contact-info-line">
+                <span class="icon">⏰</span>
+                <span><strong>Giờ làm việc:</strong> 8:00 - 17:30 (Thứ 2 - Thứ 7)</span>
+            </div>
         </div>
     </div>
 
-    <div class="cta">
-        <h2>Đặt dịch vụ ngay hôm nay!</h2>
-        <p>Liên hệ ngay để được tư vấn miễn phí và báo giá chi tiết.</p>
-        <button>Liên Hệ Ngay</button>
-    </div>
 
-    <div class="footer">
-        <p>&copy; 2025 Vận Tải Toàn Quốc. All rights reserved.</p>
-    </div>
+    <script>
+        // Lấy các phần tử cần thiết từ trang web
+        const openModalBtn = document.getElementById('open-contact-modal');
+        const closeModalBtn = document.getElementById('close-contact-modal');
+        const contactOverlay = document.getElementById('contact-overlay');
+
+        // Khi bấm nút "Liên Hệ"
+        openModalBtn.addEventListener('click', function(event) {
+            event.preventDefault(); // Ngăn hành vi mặc định của thẻ <a>
+            contactOverlay.classList.add('active');
+        });
+
+        // Khi bấm nút "X" để đóng
+        closeModalBtn.addEventListener('click', function() {
+            contactOverlay.classList.remove('active');
+        });
+
+        // Khi bấm vào lớp phủ màu đen bên ngoài để đóng
+        contactOverlay.addEventListener('click', function(event) {
+            // Chỉ đóng nếu bấm vào chính lớp phủ, không phải bấm vào bảng thông tin
+            if (event.target === contactOverlay) {
+                contactOverlay.classList.remove('active');
+            }
+        });
+    </script>
 
 </body>
 </html>
