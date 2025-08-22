@@ -1,0 +1,70 @@
+/* --- CSS CHO BẢNG GIÁ --- */
+.pricing-table {
+    width: 100%;
+    border-collapse: collapse; /* Gộp đường viền */
+    margin-top: 30px;
+    box-shadow: var(--shadow);
+    border-radius: var(--border-radius);
+    overflow: hidden; /* Ẩn phần thừa để bo góc hoạt động */
+}
+
+.pricing-table thead tr {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    text-align: left;
+    font-weight: 700;
+}
+
+.pricing-table th,
+.pricing-table td {
+    padding: 18px 20px;
+}
+
+.pricing-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+    transition: background-color 0.3s ease;
+}
+
+/* Hiệu ứng vằn cho bảng dễ đọc */
+.pricing-table tbody tr:nth-of-type(even) {
+    background-color: var(--bg-light-gray);
+}
+
+.pricing-table tbody tr:last-of-type {
+    border-bottom: 2px solid var(--accent-color);
+}
+
+.pricing-table tbody tr:hover {
+    background-color: #e9ecef; /* Màu nền khi di chuột */
+}
+
+/* --- CSS CHO CÁC NÚT XEM BẢNG GIÁ CHI TIẾT --- */
+.detailed-pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-top: 20px;
+}
+
+.price-link {
+    display: block;
+    background-color: var(--white-color);
+    color: var(--primary-color);
+    padding: 25px 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1.2em;
+    font-weight: 700;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    border: 2px solid var(--bg-light-gray);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+.price-link:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+    background-color: var(--accent-color);
+    color: var(--white-color);
+    border-color: var(--accent-color);
+}
