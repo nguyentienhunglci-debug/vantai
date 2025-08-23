@@ -1,382 +1,714 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="vi" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vận Tải Toàn Quốc - Giao Hàng Siêu Tốc</title>
+    <title>AK35 — Hoang Hoa Tham Entertainment</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
     
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="data:application/manifest+json,{
+        &quot;name&quot;: &quot;AK35 Game Portal&quot;,
+        &quot;short_name&quot;: &quot;AK35 Games&quot;,
+        &quot;start_url&quot;: &quot;.&quot;,
+        &quot;display&quot;: &quot;standalone&quot;,
+        &quot;background_color&quot;: &quot;#111827&quot;,
+        &quot;theme_color&quot;: &quot;#0891b2&quot;,
+        &quot;description&quot;: &quot;A collection of classic board games with online multiplayer.&quot;,
+        &quot;icons&quot;: [{
+            &quot;src&quot;: &quot;https://placehold.co/192x192/0891b2/ffffff?text=AK35&quot;,
+            &quot;sizes&quot;: &quot;192x192&quot;,
+            &quot;type&quot;: &quot;image/png&quot;
+        }, {
+            &quot;src&quot;: &quot;https://placehold.co/512x512/0891b2/ffffff?text=AK35&quot;,
+            &quot;sizes&quot;: &quot;512x512&quot;,
+            &quot;type&quot;: &quot;image/png&quot;
+        }]
+    }">
+
     <style>
-        /* --- BẮT ĐẦU CODE CSS --- */
-
-        /* --- NHÚNG FONT CHỮ HIỆN ĐẠI TỪ GOOGLE --- */
-        @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700&display=swap');
-
-        /* --- BIẾN MÀU (DỄ DÀNG THAY ĐỔI SAU NÀY) --- */
         :root {
-            --primary-color: #0a2540; /* Xanh Navy Đậm */
-            --accent-color: #007bff;   /* Xanh Dương Sáng */
-            --text-color: #333;
-            --bg-light-gray: #f8f9fa;
-            --white-color: #ffffff;
-            --shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
-            --border-radius: 12px;
+            --bg-dark: #111827; --bg-light: #f3f4f6;
+            --text-dark: #e5e7eb; --text-light: #1f2937;
+            --primary-cyan: #0891b2; --primary-magenta: #c026d3;
+            --card-bg-dark: #1f2937; --card-bg-light: #ffffff;
         }
-
-        /* --- THIẾT LẬP CHUNG --- */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Be Vietnam Pro', sans-serif;
-            background-color: var(--white-color);
-            color: var(--text-color);
-            line-height: 1.7;
-        }
-
-        .container {
-            max-width: 1140px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* --- HEADER CHÍNH (THANH ĐIỀU HƯỚNG) --- */
-        .main-header {
-            background-color: var(--white-color);
-            padding: 15px 0;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5em;
-            font-weight: 700;
-            color: var(--primary-color);
-            text-decoration: none;
-        }
-
-        .main-nav ul {
-            list-style: none;
-            display: flex;
-            align-items: center;
-            gap: 30px;
-        }
-
-        .main-nav a {
-            text-decoration: none;
-            color: #555;
-            font-weight: 500;
-            font-size: 1.1em;
-            transition: color 0.3s ease;
-            cursor: pointer;
-        }
-
-        .main-nav a:hover {
-            color: var(--accent-color);
-        }
-
-        .nav-contact {
-            background-color: var(--accent-color);
-            color: var(--white-color) !important;
-            padding: 8px 20px;
-            border-radius: 50px;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-
-        .nav-contact:hover {
-            background-color: #0056b3;
-            color: var(--white-color) !important;
-        }
-
-        /* --- HERO SECTION --- */
-        .hero {
-            background-color: var(--bg-light-gray);
-            padding: 100px 0;
-            text-align: center;
-        }
-        .hero h1 { font-size: 3.5em; color: var(--primary-color); margin-bottom: 20px; font-weight: 700; }
-        .hero p { font-size: 1.25em; color: #555; max-width: 700px; margin: 0 auto 30px; }
-        .cta-button { display: inline-block; background: linear-gradient(90deg, var(--accent-color), #0056b3); color: var(--white-color); padding: 15px 35px; font-size: 1.1em; font-weight: 500; text-decoration: none; border-radius: 50px; transition: transform 0.3s ease, box-shadow 0.3s ease; box-shadow: 0 4px 15px rgba(0, 123, 255, 0.4); }
-        .cta-button:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0, 123, 255, 0.5); }
-
-        /* --- SECTION CHUNG --- */
-        .section { padding: 80px 0; }
-        .section-title { text-align: center; font-size: 2.8em; color: var(--primary-color); margin-bottom: 50px; font-weight: 700; }
-
-        /* --- LƯỚI DỊCH VỤ ĐƯỜNG BỘ --- */
-        .service-grid { display: grid; justify-content: center; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
-        .service-card { background-color: var(--white-color); border-radius: var(--border-radius); padding: 40px 30px; text-align: center; box-shadow: var(--shadow); transition: transform 0.3s ease, box-shadow 0.3s ease; }
-        .service-card:hover { transform: translateY(-10px); box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1); }
-        .service-card .icon { font-size: 3em; color: var(--accent-color); margin-bottom: 20px; }
-        .service-card h3 { font-size: 1.5em; color: var(--primary-color); margin-bottom: 15px; }
-        .service-card p { color: #666; }
-        
-        /* --- BẢNG GIÁ --- */
-        .pricing-table { width: 100%; border-collapse: collapse; margin-top: 30px; box-shadow: var(--shadow); border-radius: var(--border-radius); overflow: hidden; }
-        .pricing-table thead tr { background-color: var(--primary-color); color: var(--white-color); text-align: left; font-weight: 700; }
-        .pricing-table th, .pricing-table td { padding: 18px 20px; }
-        .pricing-table tbody tr { border-bottom: 1px solid #dddddd; transition: background-color 0.3s ease; }
-        .pricing-table tbody tr:nth-of-type(even) { background-color: var(--bg-light-gray); }
-        .pricing-table tbody tr:last-of-type { border-bottom: 2px solid var(--accent-color); }
-        .pricing-table tbody tr:hover { background-color: #e9ecef; }
-
-        /* --- TRA CƯỚC CHI TIẾT --- */
-        .detailed-pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-top: 20px; }
-        .price-link { display: block; background-color: var(--white-color); color: var(--primary-color); padding: 25px 20px; text-align: center; text-decoration: none; font-size: 1.2em; font-weight: 700; border-radius: var(--border-radius); box-shadow: var(--shadow); border: 2px solid var(--bg-light-gray); transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease; }
-        .price-link:hover { transform: translateY(-8px); box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12); background-color: var(--accent-color); color: var(--white-color); border-color: var(--accent-color); }
-
-        /* --- FOOTER --- */
-        .footer { background-color: var(--primary-color); color: var(--white-color); text-align: center; padding: 40px 0; }
-        
-        /* --- NÚT BẤM ZALO & GỌI ĐIỆN --- */
-        .floating-buttons { position: fixed; bottom: 25px; right: 25px; z-index: 1010; display: flex; flex-direction: column; gap: 15px; }
-        .floating-buttons a { text-decoration: none; }
-        .zalo-button { display: flex; justify-content: center; align-items: center; width: 60px; height: 60px; background-color: #0068ff; border-radius: 50%; box-shadow: 0 4px 15px rgba(0, 104, 255, 0.5); transition: transform 0.3s ease; }
-        .zalo-button:hover { transform: scale(1.1); }
-        .zalo-button img { width: 35px; height: auto; }
-        .phone-button { display: flex; align-items: center; background-color: #e62143; color: white; padding: 8px 20px 8px 8px; border-radius: 50px; box-shadow: 0 4px 15px rgba(230, 33, 67, 0.5); font-size: 1.1em; font-weight: 700; transition: transform 0.3s ease; }
-        .phone-button:hover { transform: scale(1.05); }
-        .phone-icon-wrapper { width: 45px; height: 45px; background-color: white; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin-right: 10px; position: relative; }
-        .phone-icon-wrapper svg { width: 24px; height: 24px; fill: #e62143; }
-        .phone-icon-wrapper::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(230, 33, 67, 0.5); border-radius: 50%; animation: pulse 2s infinite; z-index: -1; }
-        @keyframes pulse { 0% { transform: scale(0.9); opacity: 0.7; } 70% { transform: scale(1.5); opacity: 0; } 100% { transform: scale(0.9); opacity: 0; } }
-        
-        /* --- CSS CHO POP-UP LIÊN HỆ --- */
-        .contact-modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.6);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
-            visibility: hidden;
-            opacity: 0;
-            transition: opacity 0.3s ease, visibility 0s 0.3s;
-        }
-        .contact-modal-overlay.active {
-            visibility: visible;
-            opacity: 1;
-            transition: opacity 0.3s ease;
-        }
-        .contact-modal {
-            background-color: var(--white-color);
-            padding: 30px 40px;
-            border-radius: var(--border-radius);
-            box-shadow: 0 5px 25px rgba(0,0,0,0.2);
-            max-width: 500px;
-            width: 90%;
-            position: relative;
-            transform: scale(0.9);
-            transition: transform 0.3s ease;
-        }
-        .contact-modal-overlay.active .contact-modal {
-            transform: scale(1);
-        }
-        .close-modal {
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            background: transparent;
-            border: none;
-            font-size: 2.5em;
-            font-weight: 300;
-            cursor: pointer;
-            color: #aaa;
-            line-height: 1;
-        }
-        .close-modal:hover { color: #333; }
-        .contact-modal h2 {
-            font-size: 2em;
-            color: var(--primary-color);
-            margin-bottom: 25px;
-            text-align: center;
-        }
-        .contact-info-line {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-            font-size: 1.1em;
-        }
-        .contact-info-line .icon {
-            font-size: 1.5em;
-            margin-right: 15px;
-            width: 30px;
-            text-align: center;
-            color: var(--accent-color);
-        }
-
-        /* --- KẾT THÚC CODE CSS --- */
+        html.dark { color-scheme: dark; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-light); color: var(--text-light); transition: background-color 0.3s, color 0.3s; }
+        html.dark body { background-color: var(--bg-dark); color: var(--text-dark); }
+        .neon-text { text-shadow: 0 0 5px var(--primary-cyan), 0 0 10px var(--primary-cyan), 0 0 20px var(--primary-cyan); }
+        .game-card { background-color: var(--card-bg-light); transition: transform 0.2s, box-shadow 0.2s; }
+        html.dark .game-card { background-color: var(--card-bg-dark); }
+        .game-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+        html.dark .game-card:hover { box-shadow: 0 0 15px var(--primary-cyan), 0 0 25px var(--primary-magenta); }
+        .btn-primary { background-image: linear-gradient(to right, var(--primary-cyan), var(--primary-magenta)); }
+        .btn-primary:hover { filter: brightness(1.2); }
+        .tic-tac-toe-cell, .connect-four-cell, .caro-cell { border: 2px solid var(--primary-cyan); transition: background-color 0.2s; }
+        .tic-tac-toe-cell:hover, .connect-four-cell:hover, .caro-cell:hover { background-color: rgba(8, 145, 178, 0.2); }
+        .player1-token { background-color: var(--primary-cyan); box-shadow: 0 0 8px var(--primary-cyan); }
+        .player2-token { background-color: var(--primary-magenta); box-shadow: 0 0 8px var(--primary-magenta); }
+        *:focus-visible { outline: 3px solid var(--primary-magenta); outline-offset: 2px; border-radius: 4px; }
+        #theme-toggle:checked + .block + .dot { transform: translateX(1.5rem); }
     </style>
 </head>
-<body>
+<body class="antialiased min-h-screen">
 
-    <header class="main-header">
-        <div class="container header-container">
-            <a href="#" class="logo">
-                🚛 Vận Tải Toàn Quốc
-            </a>
-            <nav class="main-nav">
-                <ul>
-                    <li><a href="#dich-vu">Dịch Vụ</a></li>
-                    <li><a href="#bang-gia">Bảng Giá</a></li>
-                    <li><a href="#tra-cuoc">Tra Cước</a></li>
-                    <li><a id="open-contact-modal" class="nav-contact">Liên Hệ</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <section class="hero">
-        <div class="container">
-            <h1>Vận Tải Siêu Tốc</h1>
-            <p>Giải pháp vận chuyển hàng hóa chuyên nghiệp, an toàn và nhanh chóng trên khắp 63 tỉnh thành.</p>
-            <a href="#dich-vu" class="cta-button">Khám Phá Dịch Vụ</a>
-        </div>
-    </section>
-
-    <main>
-        <section id="dich-vu" class="section">
-            <div class="container">
-                <h2 class="section-title">Dịch Vụ Vận Tải Đường Bộ</h2>
-                <div class="service-grid">
-                    <div class="service-card">
-                        <div class="icon">🚚</div>
-                        <h3>Vận Chuyển Bằng Xe Tải</h3>
-                        <p>Hệ thống xe tải hiện đại, đa dạng tải trọng, đáp ứng mọi nhu cầu vận chuyển Bắc - Nam và nội thành.</p>
-                    </div>
-                    <div class="service-card">
-                        <div class="icon">📦</div>
-                        <h3>Vận Chuyển Bằng Container</h3>
-                        <p>Giải pháp tối ưu cho hàng hóa số lượng lớn, hàng công kềnh, đảm bảo an toàn và tiết kiệm chi phí.</p>
-                    </div>
+    <div id="app" class="flex flex-col min-h-screen">
+        <!-- Header -->
+        <header class="p-4 shadow-md bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm sticky top-0 z-50">
+            <div class="container mx-auto flex justify-between items-center">
+                <div class="flex items-center space-x-4 cursor-pointer" id="home-logo">
+                    <!-- TODO: Thay thế logo tại đây -->
+                    <div class="w-10 h-10 bg-gradient-to-br from-cyan-500 to-purple-600 rounded-lg flex items-center justify-center font-black text-white text-xl">A</div>
+                    <h1 class="text-xl md:text-2xl font-bold tracking-tighter"><span class="text-cyan-500">AK35</span><span class="hidden sm:inline"> — Hoang Hoa Tham Entertainment</span></h1>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <label for="theme-toggle" class="flex items-center cursor-pointer">
+                        <div class="relative">
+                            <input type="checkbox" id="theme-toggle" class="sr-only">
+                            <div class="block bg-gray-600 w-14 h-8 rounded-full"></div>
+                            <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
+                        </div>
+                    </label>
                 </div>
             </div>
-        </section>
+        </header>
 
-        <section id="bang-gia" class="section" style="background-color: var(--bg-light-gray);">
-            <div class="container">
-                <h2 class="section-title">Bảng Giá Tham Khảo</h2>
-                <table class="pricing-table">
-                    <thead>
-                        <tr>
-                            <th>Tuyến Vận Chuyển</th>
-                            <th>Hàng Nặng (VND/kg)</th>
-                            <th>Hàng Nhẹ (VND/m³)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr> <td><strong>Hà Nội → TP. Hồ Chí Minh</strong></td> <td>2.500 - 3.500</td> <td>550.000 - 650.000</td> </tr>
-                        <tr> <td><strong>TP. Hồ Chí Minh → Hà Nội</strong></td> <td>2.800 - 3.800</td> <td>600.000 - 700.000</td> </tr>
-                        <tr> <td><strong>Hà Nội → Đà Nẵng</strong></td> <td>1.800 - 2.500</td> <td>400.000 - 500.000</td> </tr>
-                        <tr> <td><strong>TP. Hồ Chí Minh → Đà Nẵng</strong></td> <td>1.700 - 2.400</td> <td>380.000 - 480.000</td> </tr>
-                        <tr> <td><strong>Hà Nội → Cần Thơ</strong></td> <td>3.000 - 4.000</td> <td>650.000 - 750.000</td> </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-
-        <section id="tra-cuoc" class="section">
-             <div class="container">
-                <h2 class="section-title">Tra Cước Vận Chuyển Chi Tiết</h2>
-                <div class="detailed-pricing-grid">
-                    <a href="#" class="price-link">Bảng Giá Đi Các Tỉnh Miền Bắc</a>
-                    <a href="#" class="price-link">Bảng Giá Đi Các Tỉnh Miền Trung</a>
-                    <a href="#" class="price-link">Bảng Giá Đi Các Tỉnh Miền Nam</a>
-                    <a href="#" class="price-link">Bảng Giá Đi Các Tỉnh Tây Nguyên</a>
+        <!-- Main Content -->
+        <main id="main-content" class="flex-grow container mx-auto p-4 md:p-8">
+            <section id="home-screen">
+                <h2 class="text-3xl md:text-4xl font-black text-center mb-8"><span class="neon-text">Game</span> Library</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Cards will be populated by JS -->
                 </div>
-            </div>
-        </section>
-    </main>
+            </section>
+            <section id="game-screen" class="hidden"></section>
+        </main>
 
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2025 Vận Tải Toàn Quốc. Uy tín tạo nên thương hiệu.</p>
-        </div>
-    </footer>
-
-    <div class="floating-buttons">
-        <a href="https://zalo.me/0902663896" target="_blank" class="zalo-button">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Icon_of_Zalo.svg/2048px-Icon_of_Zalo.svg.png" alt="Zalo">
-        </a>
-        <a href="tel:0902663896" class="phone-button">
-            <div class="phone-icon-wrapper">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M164.9 24.6c-7.7-18.6-28-28.5-47.4-23.2l-88 24C12.1 30.2 0 46 0 64C0 311.4 200.6 512 448 512c18 0 33.8-12.1 38.6-29.5l24-88c5.3-19.4-4.6-39.7-23.2-47.4l-96-40c-16.3-6.8-35.2-2.1-46.3 11.6L304.7 368C234.3 334.7 177.3 277.7 144 207.3L193.3 167c13.7-11.2 18.4-30 11.6-46.3l-40-96z"/></svg>
+        <!-- Footer -->
+        <footer class="p-4 bg-gray-200 dark:bg-gray-900">
+            <div class="container mx-auto text-center text-gray-600 dark:text-gray-400">
+                <p>&copy; 2024 AK35 — Hoang Hoa Tham Entertainment. All rights reserved.</p>
+                <div class="mt-2"><!-- TODO: Thay thế liên kết mạng xã hội --><a href="#" class="hover:text-cyan-500 mx-2">Facebook</a><a href="#" class="hover:text-cyan-500 mx-2">Twitter</a><a href="#" class="hover:text-cyan-500 mx-2">GitHub</a></div>
             </div>
-            <span>0902 663 896</span>
-        </a>
+        </footer>
     </div>
-
-    <div class="contact-modal-overlay" id="contact-overlay">
-        <div class="contact-modal">
-            <button class="close-modal" id="close-contact-modal">&times;</button>
-            <h2>Thông Tin Liên Hệ</h2>
-            <div class="contact-info-line">
-                <span class="icon">🏢</span>
-                <span><strong>Công ty:</strong> TNHH Vận Tải Toàn Quốc</span>
-            </div>
-            <div class="contact-info-line">
-                <span class="icon">📍</span>
-                <span><strong>Địa chỉ:</strong> Số 1, Đường ABC, Phường XYZ, Lào Cai</span>
-            </div>
-            <div class="contact-info-line">
-                <span class="icon">📞</span>
-                <span><strong>Hotline:</strong> <a href="tel:0902663896">0902 663 896</a> (Mr. Tốc)</span>
-            </div>
-            <div class="contact-info-line">
-                <span class="icon">📧</span>
-                <span><strong>Email:</strong> lienhe@vantaivn.com</span>
-            </div>
-            <div class="contact-info-line">
-                <span class="icon">⏰</span>
-                <span><strong>Giờ làm việc:</strong> 8:00 - 17:30 (Thứ 2 - Thứ 7)</span>
-            </div>
+    
+    <!-- Modal for Game Mode Selection -->
+    <div id="mode-modal" class="hidden fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 transition-opacity duration-200 opacity-0">
+        <div id="modal-content" class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-2xl w-full max-w-md text-center">
+            <!-- Content will be injected by JS -->
         </div>
     </div>
 
+    <!-- Game Libraries -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+        xintegrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2"
+        crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.2/chess.js"></script>
+    
+    <!-- Main Game Logic -->
+    <script type="module">
+        // --- GAME MODULES (MUST be defined before GAMES constant) ---
+        const ChessGame = {
+            game: null, board: null, mode: 'pve', playerColor: 'w', isGameOver: false,
+            
+            init(container, goHome, mode, onlinePayload) {
+                this.mode = mode;
+                this.playerColor = onlinePayload.color || 'w';
+                this.isGameOver = false;
 
-    <script>
-        // Lấy các phần tử cần thiết từ trang web
-        const openModalBtn = document.getElementById('open-contact-modal');
-        const closeModalBtn = document.getElementById('close-contact-modal');
-        const contactOverlay = document.getElementById('contact-overlay');
+                container.innerHTML = `
+                    <div class="flex flex-col lg:flex-row gap-8">
+                        <div class="flex-grow lg:w-2/3 relative">
+                            <div id="chess-board" class="w-full aspect-square max-w-[70vh] mx-auto shadow-2xl"></div>
+                            <div id="game-over-overlay" class="hidden absolute inset-0 bg-black/70 flex-col items-center justify-center text-white text-center">
+                                <h2 id="game-over-text" class="text-4xl font-bold"></h2>
+                                <p id="game-over-reason" class="text-xl mt-2"></p>
+                            </div>
+                        </div>
+                        <div class="lg:w-1/3 bg-gray-100 dark:bg-gray-800 p-4 rounded-lg">
+                            <h2 class="text-2xl font-bold mb-4">Cờ Vua</h2>
+                            <div class="flex justify-between items-center mb-4">
+                                <button id="back-home-btn" class="py-2 px-4 rounded bg-gray-500 text-white">Trang Chủ</button>
+                                <button id="new-game-btn" class="py-2 px-4 rounded btn-primary text-white">Ván Mới</button>
+                            </div>
+                            <div id="player-info" class="mb-4 text-center">
+                               <p>Chế độ: <strong>${mode.toUpperCase()}</strong></p>
+                               ${mode === 'online' ? `<p>Bạn là quân <strong>${this.playerColor === 'w' ? 'Trắng' : 'Đen'}</strong></p>` : ''}
+                            </div>
+                            <div id="status" class="font-semibold mb-2 h-6 text-center"></div>
+                            <div id="move-history" class="h-48 overflow-y-auto bg-white dark:bg-gray-700 p-2 rounded border border-gray-300 dark:border-gray-600"></div>
+                        </div>
+                    </div>`;
+                
+                document.getElementById('back-home-btn').addEventListener('click', goHome);
+                document.getElementById('new-game-btn').addEventListener('click', () => {
+                    if (this.mode !== 'online') this.resetGame();
+                });
+                if (this.mode === 'online') {
+                    document.getElementById('new-game-btn').disabled = true;
+                    document.getElementById('new-game-btn').classList.add('opacity-50', 'cursor-not-allowed');
+                }
 
-        // Khi bấm nút "Liên Hệ"
-        openModalBtn.addEventListener('click', function(event) {
-            event.preventDefault(); // Ngăn hành vi mặc định của thẻ <a>
-            contactOverlay.classList.add('active');
-        });
+                this.game = new Chess();
+                if (mode === 'online' && onlinePayload.fen) {
+                    this.game.load(onlinePayload.fen);
+                }
+                
+                this.board = Chessboard('chess-board', {
+                    draggable: true,
+                    position: this.game.fen(),
+                    orientation: this.playerColor === 'w' ? 'white' : 'black',
+                    onDragStart: this.onDragStart.bind(this),
+                    onDrop: this.onDrop.bind(this),
+                    onSnapEnd: () => this.board.position(this.game.fen())
+                });
+                
+                this.statusEl = document.getElementById('status');
+                this.moveHistoryEl = document.getElementById('move-history');
+                this.gameOverOverlay = document.getElementById('game-over-overlay');
+                this.gameOverText = document.getElementById('game-over-text');
+                this.gameOverReason = document.getElementById('game-over-reason');
 
-        // Khi bấm nút "X" để đóng
-        closeModalBtn.addEventListener('click', function() {
-            contactOverlay.classList.remove('active');
-        });
+                this.updateStatus();
+            },
 
-        // Khi bấm vào lớp phủ màu đen bên ngoài để đóng
-        contactOverlay.addEventListener('click', function(event) {
-            // Chỉ đóng nếu bấm vào chính lớp phủ, không phải bấm vào bảng thông tin
-            if (event.target === contactOverlay) {
-                contactOverlay.classList.remove('active');
+            resetGame() {
+                this.game.reset();
+                this.board.position(this.game.fen());
+                this.isGameOver = false;
+                this.gameOverOverlay.classList.add('hidden');
+                this.updateStatus();
+            },
+
+            onDragStart(source, piece) {
+                if (this.isGameOver || this.game.game_over()) return false;
+                if (this.mode === 'pve' && this.game.turn() !== 'w') return false;
+                if (this.mode === 'pvp' && this.game.turn() !== piece.charAt(0)) return false;
+                if (this.mode === 'online' && this.game.turn() !== this.playerColor) return false;
+                return true;
+            },
+
+            onDrop(source, target) {
+                const move = this.game.move({ from: source, to: target, promotion: 'q' });
+                if (move === null) return 'snapback';
+                
+                this.updateStatus();
+
+                if (this.mode === 'pve' && !this.game.game_over()) {
+                    setTimeout(() => this.makeAiMove(), 250);
+                } else if (this.mode === 'online') {
+                    OnlineManager.sendMove(move);
+                }
+            },
+
+            handleOpponentMove(move) {
+                if (this.game.move(move)) {
+                    this.board.position(this.game.fen());
+                    this.updateStatus();
+                }
+            },
+
+            updateStatus() {
+                let status = '';
+                const moveColor = this.game.turn() === 'b' ? 'Đen' : 'Trắng';
+
+                if (this.game.in_checkmate()) {
+                    status = `Hết cờ! ${moveColor} thua.`;
+                    this.endGame(false, `Chiếu hết!`, `${moveColor === 'Trắng' ? 'Đen' : 'Trắng'} thắng.`);
+                } else if (this.game.in_draw()) {
+                    status = 'Hòa cờ!';
+                    let reason = 'Hòa!';
+                    if (this.game.in_stalemate()) reason = 'Hòa cờ do hết nước đi (Stalemate)';
+                    else if (this.game.in_threefold_repetition()) reason = 'Hòa do lặp lại 3 lần vị trí';
+                    else if (this.game.insufficient_material()) reason = 'Hòa do không đủ lực lượng';
+                    this.endGame(false, `Hòa cờ!`, reason);
+                } else {
+                    status = `Lượt của ${moveColor}`;
+                    if (this.game.in_check()) {
+                        status += `, Vua đang bị chiếu.`;
+                    }
+                }
+                this.statusEl.textContent = status;
+                
+                const history = this.game.history({ verbose: true });
+                this.moveHistoryEl.innerHTML = history.map((move, index) => 
+                    (index % 2 === 0 ? `<div class="grid grid-cols-3"><span class="font-bold">${Math.floor(index / 2) + 1}.</span><span>${move.san}</span>` : `<span>${move.san}</span></div>`)
+                ).join('');
+                this.moveHistoryEl.scrollTop = this.moveHistoryEl.scrollHeight;
+            },
+            
+            makeAiMove() {
+                const possibleMoves = this.game.moves();
+                if (possibleMoves.length === 0) return;
+                const randomMove = possibleMoves[Math.floor(Math.random() * possibleMoves.length)];
+                this.game.move(randomMove);
+                this.board.position(this.game.fen());
+                this.updateStatus();
+            },
+            
+            endGame(isOpponentDisconnect = false, title = '', reason = '') {
+                this.isGameOver = true;
+                if (isOpponentDisconnect) {
+                    this.gameOverText.textContent = 'Bạn thắng!';
+                    this.gameOverReason.textContent = 'Đối thủ đã mất kết nối.';
+                } else {
+                    this.gameOverText.textContent = title;
+                    this.gameOverReason.textContent = reason;
+                }
+                this.gameOverOverlay.classList.remove('hidden');
+            },
+
+            cleanup() { /* No special cleanup needed for chess */ }
+        };
+
+        const TicTacToeGame = {
+            board: null, currentPlayer: null, mode: 'pve', playerSymbol: 'X', isGameOver: false,
+            
+            init(container, goHome, mode, onlinePayload) {
+                this.mode = mode;
+                this.playerSymbol = onlinePayload.symbol || 'X';
+                this.isGameOver = false;
+
+                container.innerHTML = `
+                    <div class="max-w-md mx-auto text-center">
+                        <div class="flex justify-between items-center mb-4">
+                            <button id="back-home-btn" class="py-2 px-4 rounded bg-gray-500 text-white">Trang Chủ</button>
+                            <h2 class="text-3xl font-bold">Tic-Tac-Toe</h2>
+                            <button id="new-game-btn" class="py-2 px-4 rounded btn-primary text-white">Ván Mới</button>
+                        </div>
+                        <div id="tic-tac-toe-board" class="grid grid-cols-3 gap-2 aspect-square mb-4"></div>
+                        <div id="status" class="text-xl font-semibold h-8"></div>
+                    </div>`;
+
+                this.boardEl = document.getElementById('tic-tac-toe-board');
+                this.statusEl = document.getElementById('status');
+                document.getElementById('back-home-btn').addEventListener('click', goHome);
+                document.getElementById('new-game-btn').addEventListener('click', () => {
+                    if (this.mode !== 'online') this.reset();
+                });
+                
+                this.reset();
+            },
+
+            reset() {
+                this.board = ['', '', '', '', '', '', '', '', ''];
+                this.currentPlayer = 'X';
+                this.isGameOver = false;
+                this.renderBoard();
+                this.updateStatus(`Lượt của ${this.currentPlayer}`);
+            },
+
+            renderBoard() {
+                this.boardEl.innerHTML = this.board.map((symbol, i) => 
+                    `<div class="tic-tac-toe-cell flex items-center justify-center text-6xl font-black rounded-lg cursor-pointer" data-index="${i}">${symbol}</div>`
+                ).join('');
+                this.boardEl.querySelectorAll('.tic-tac-toe-cell').forEach(cell => {
+                    cell.addEventListener('click', () => this.handleCellClick(parseInt(cell.dataset.index)));
+                    if (cell.textContent === 'X') cell.classList.add('text-cyan-400');
+                    if (cell.textContent === 'O') cell.classList.add('text-fuchsia-500');
+                });
+            },
+
+            handleCellClick(index) {
+                if (this.isGameOver || this.board[index] !== '') return;
+
+                const isMyTurn = (this.mode === 'online' && this.currentPlayer === this.playerSymbol) ||
+                                 (this.mode === 'pve' && this.currentPlayer === 'X') ||
+                                 (this.mode === 'pvp');
+
+                if (!isMyTurn) return;
+                
+                this.makeMove(index, this.currentPlayer);
+            },
+            
+            makeMove(index, player) {
+                if (this.board[index] !== '' || this.isGameOver) return;
+
+                this.board[index] = player;
+                this.renderBoard();
+                
+                if (this.checkWinner(player)) {
+                    this.updateStatus(`${player} thắng!`);
+                    this.isGameOver = true;
+                    return;
+                }
+                if (this.board.every(cell => cell !== '')) {
+                    this.updateStatus('Hòa!');
+                    this.isGameOver = true;
+                    return;
+                }
+
+                const previousPlayer = this.currentPlayer;
+                this.currentPlayer = (player === 'X') ? 'O' : 'X';
+                this.updateStatus(`Lượt của ${this.currentPlayer}`);
+
+                if (this.mode === 'online' && this.currentPlayer !== this.playerSymbol) {
+                     OnlineManager.sendMove({ index, player: previousPlayer });
+                } else if (this.mode === 'pve' && this.currentPlayer === 'O') {
+                    setTimeout(() => this.aiMove(), 500);
+                }
+            },
+            
+            handleOpponentMove(move) {
+                this.makeMove(move.index, move.player);
+            },
+
+            aiMove() {
+                const bestMove = this.minimax(this.board, 'O').index;
+                this.makeMove(bestMove, 'O');
+            },
+
+            updateStatus(msg) { this.statusEl.textContent = msg; },
+            
+            checkWinner(player) {
+                const winCombos = [
+                    [0, 1, 2], [3, 4, 5], [6, 7, 8], // rows
+                    [0, 3, 6], [1, 4, 7], [2, 5, 8], // columns
+                    [0, 4, 8], [2, 4, 6]             // diagonals
+                ];
+                return winCombos.some(combo => combo.every(index => this.board[index] === player));
+            },
+            
+            minimax(newBoard, player) {
+                const availSpots = newBoard.map((c, i) => c === '' ? i : null).filter(i => i !== null);
+
+                if (this.checkWinner('X')) return { score: -10 };
+                if (this.checkWinner('O')) return { score: 10 };
+                if (availSpots.length === 0) return { score: 0 };
+
+                const moves = [];
+                for (let i = 0; i < availSpots.length; i++) {
+                    const move = {};
+                    move.index = availSpots[i];
+                    const tempBoard = [...newBoard];
+                    tempBoard[availSpots[i]] = player;
+
+                    if (player === 'O') {
+                        const result = this.minimax(tempBoard, 'X');
+                        move.score = result.score;
+                    } else {
+                        const result = this.minimax(tempBoard, 'O');
+                        move.score = result.score;
+                    }
+                    moves.push(move);
+                }
+
+                let bestMove;
+                if (player === 'O') {
+                    let bestScore = -10000;
+                    for (let i = 0; i < moves.length; i++) {
+                        if (moves[i].score > bestScore) {
+                            bestScore = moves[i].score;
+                            bestMove = i;
+                        }
+                    }
+                } else {
+                    let bestScore = 10000;
+                    for (let i = 0; i < moves.length; i++) {
+                        if (moves[i].score < bestScore) {
+                            bestScore = moves[i].score;
+                            bestMove = i;
+                        }
+                    }
+                }
+                return moves[bestMove];
+            },
+
+            endGame() { this.isGameOver = true; },
+            cleanup() {}
+        };
+
+        const ConnectFourGame = { 
+            init(container, goHome) { container.innerHTML = `<div class="text-center"><h2 class="text-2xl font-bold">Connect Four Sắp ra mắt</h2><button id="back" class="mt-4 py-2 px-4 rounded bg-gray-500 text-white">Trang Chủ</button></div>`; document.getElementById('back').onclick=goHome;} 
+        };
+        const CaroGame = { 
+            init(container, goHome) { container.innerHTML = `<div class="text-center"><h2 class="text-2xl font-bold">Cờ Caro Sắp ra mắt</h2><button id="back" class="mt-4 py-2 px-4 rounded bg-gray-500 text-white">Trang Chủ</button></div>`; document.getElementById('back').onclick=goHome;} 
+        };
+        
+        // --- CONSTANTS & CONFIG (Defined AFTER game modules) ---
+        const GAMES = {
+            'chess': { name: 'Cờ Vua', desc: 'Vua của các trò chơi. Thử thách trí tuệ với AI hoặc bạn bè.', module: ChessGame },
+            'connect-four': { name: 'Connect Four', desc: 'Thả quân cờ để tạo thành một hàng 4 trước đối thủ.', module: ConnectFourGame },
+            'tic-tac-toe': { name: 'Tic-Tac-Toe', desc: 'Trò chơi kinh điển. Bạn không thể thắng được AI của chúng tôi!', module: TicTacToeGame },
+            'caro': { name: 'Cờ Caro', desc: 'Tạo một hàng 5 quân cờ trên bàn cờ 15x15.', module: CaroGame }
+        };
+        const SERVER_URL = 'ws://localhost:3000';
+
+        // --- ONLINE MANAGER (WEBSOCKET) ---
+        const OnlineManager = {
+            ws: null,
+            gameId: null,
+            
+            connect() {
+                return new Promise((resolve, reject) => {
+                    if (this.ws && this.ws.readyState === WebSocket.OPEN) {
+                        return resolve();
+                    }
+                    this.ws = new WebSocket(SERVER_URL);
+                    this.ws.onopen = () => {
+                        console.log('Connected to server.');
+                        resolve();
+                    };
+                    this.ws.onmessage = this.handleMessage.bind(this);
+                    this.ws.onerror = (err) => {
+                        console.error('WebSocket Error:', err);
+                        App.showNotification('Không thể kết nối tới server.', 'error');
+                        reject(err);
+                    };
+                    this.ws.onclose = () => {
+                        console.log('Disconnected from server.');
+                        if (App.activeGameModule) {
+                           App.showNotification('Mất kết nối với server.', 'info');
+                        }
+                    };
+                });
+            },
+
+            sendMessage(data) {
+                if (this.ws && this.ws.readyState === WebSocket.OPEN) {
+                    this.ws.send(JSON.stringify(data));
+                }
+            },
+
+            handleMessage(event) {
+                const msg = JSON.parse(event.data);
+                console.log('Received from server:', msg);
+                const activeGame = App.activeGameModule;
+
+                switch (msg.type) {
+                    case 'roomCreated':
+                        App.modal.showOnlineRoomView(this.gameId, msg.roomId);
+                        break;
+                    case 'matchFound':
+                    case 'startGame':
+                        App.modal.hide();
+                        App.startGame(msg.gameId, 'online', msg.payload);
+                        break;
+                    case 'opponentMove':
+                        if (activeGame && activeGame.handleOpponentMove) {
+                            activeGame.handleOpponentMove(msg.move);
+                        }
+                        break;
+                    case 'opponentDisconnected':
+                        App.showNotification('Đối thủ đã thoát. Bạn thắng!', 'success');
+                        if(activeGame && activeGame.endGame) activeGame.endGame(true);
+                        break;
+                    case 'error':
+                        App.showNotification(msg.message, 'error');
+                        App.modal.showOnlineOptions(this.gameId); // Go back to online options
+                        break;
+                }
+            },
+
+            findMatch(gameId) { this.gameId = gameId; this.sendMessage({ type: 'findMatch', gameId }); },
+            createRoom(gameId) { this.gameId = gameId; this.sendMessage({ type: 'createRoom', gameId }); },
+            joinRoom(gameId, roomId) { this.gameId = gameId; this.sendMessage({ type: 'joinRoom', gameId, roomId }); },
+            sendMove(move) { this.sendMessage({ type: 'move', move }); }
+        };
+
+        // --- CORE APPLICATION LOGIC ---
+        const App = {
+            activeGameModule: null,
+
+            init() {
+                this.cacheElements();
+                this.registerEventListeners();
+                this.loadTheme();
+                this.renderGameCards();
+                this.registerServiceWorker();
+            },
+
+            cacheElements() {
+                this.html = document.documentElement;
+                this.homeScreen = document.getElementById('home-screen');
+                this.gameScreen = document.getElementById('game-screen');
+                this.modal.el = document.getElementById('mode-modal');
+                this.modal.content = document.getElementById('modal-content');
+            },
+
+            registerEventListeners() {
+                document.getElementById('theme-toggle').addEventListener('change', this.toggleTheme.bind(this));
+                document.getElementById('home-logo').addEventListener('click', this.goHome.bind(this));
+            },
+            
+            renderGameCards() {
+                const container = this.homeScreen.querySelector('.grid');
+                container.innerHTML = Object.entries(GAMES).map(([id, {name, desc}]) => `
+                    <div class="game-card rounded-lg overflow-hidden shadow-lg" data-game="${id}">
+                        <img src="https://placehold.co/600x400/1f2937/0891b2?text=${name.toUpperCase().replace(' ', '+')}" alt="${name}" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold mb-2">${name}</h3>
+                            <p class="text-gray-600 dark:text-gray-400 mb-4">${desc}</p>
+                            <button class="play-btn w-full py-2 px-4 rounded-md text-white font-semibold btn-primary" data-game="${id}" aria-label="Chơi ${name}">Chơi Ngay</button>
+                        </div>
+                    </div>
+                `).join('');
+                container.querySelectorAll('.play-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        this.modal.showModeSelection(btn.dataset.game);
+                    });
+                });
+            },
+
+            loadTheme() {
+                const isDarkMode = localStorage.getItem('darkMode') === 'true';
+                document.getElementById('theme-toggle').checked = isDarkMode;
+                if (isDarkMode) this.html.classList.add('dark');
+                else this.html.classList.remove('dark');
+            },
+            toggleTheme() {
+                this.html.classList.toggle('dark');
+                localStorage.setItem('darkMode', this.html.classList.contains('dark'));
+            },
+            
+            modal: {
+                el: null, content: null,
+                show() { this.el.classList.remove('hidden', 'opacity-0'); this.el.classList.add('opacity-100'); },
+                hide() { this.el.classList.add('opacity-0'); setTimeout(() => this.el.classList.add('hidden'), 200); },
+                
+                showModeSelection(gameId) {
+                    this.content.innerHTML = `
+                        <h3 class="text-2xl font-bold mb-6">Chọn chế độ chơi cho ${GAMES[gameId].name}</h3>
+                        <div class="space-y-4">
+                            <button class="w-full py-3 rounded btn-primary text-white" data-mode="pve">Chơi với Máy (AI)</button>
+                            <button class="w-full py-3 rounded btn-primary text-white" data-mode="pvp">2 Người Chơi (Local)</button>
+                            <button class="w-full py-3 rounded btn-primary text-white" data-mode="online">Chơi Online</button>
+                        </div>
+                        <button class="mt-6 text-gray-500" data-mode="cancel">Hủy</button>
+                    `;
+                    this.content.onclick = async (e) => {
+                        const mode = e.target.dataset.mode;
+                        if (!mode) return;
+                        if (mode === 'cancel') return this.hide();
+                        
+                        if (mode === 'online') {
+                            this.content.innerHTML = `<p class="text-xl">Đang kết nối tới server...</p>`;
+                            try {
+                                await OnlineManager.connect();
+                                this.showOnlineOptions(gameId);
+                            } catch (error) {
+                                this.hide();
+                            }
+                        } else {
+                            this.hide();
+                            App.startGame(gameId, mode);
+                        }
+                    };
+                    this.show();
+                },
+
+                showOnlineOptions(gameId) {
+                    this.content.innerHTML = `
+                        <h3 class="text-2xl font-bold mb-6">Chơi Online</h3>
+                        <div class="space-y-4">
+                            <button class="w-full py-3 rounded btn-primary text-white" id="quick-match-btn">Tìm trận nhanh</button>
+                            <button class="w-full py-3 rounded bg-gray-600 text-white" id="create-room-btn">Tạo phòng riêng</button>
+                        </div>
+                        <div class="mt-6">
+                            <input type="text" id="room-code-input" placeholder="Nhập mã phòng" class="w-full p-2 rounded bg-gray-200 dark:bg-gray-700 text-center uppercase">
+                            <button class="w-full py-2 mt-2 rounded bg-gray-600 text-white" id="join-room-btn">Vào phòng</button>
+                        </div>
+                        <button class="mt-6 text-gray-500" id="back-to-mode-select">Quay lại</button>
+                    `;
+                    document.getElementById('quick-match-btn').onclick = () => {
+                        this.content.innerHTML = `<p class="text-xl">Đang tìm đối thủ...</p>`;
+                        OnlineManager.findMatch(gameId);
+                    };
+                    document.getElementById('create-room-btn').onclick = () => {
+                        this.content.innerHTML = `<p class="text-xl">Đang tạo phòng...</p>`;
+                        OnlineManager.createRoom(gameId);
+                    };
+                    document.getElementById('join-room-btn').onclick = () => {
+                        const roomId = document.getElementById('room-code-input').value.trim().toUpperCase();
+                        if (roomId.length === 6) {
+                            OnlineManager.joinRoom(gameId, roomId);
+                        } else {
+                            App.showNotification("Mã phòng phải có 6 ký tự.", "error");
+                        }
+                    };
+                    document.getElementById('back-to-mode-select').onclick = () => this.showModeSelection(gameId);
+                },
+
+                showOnlineRoomView(gameId, roomId) {
+                    this.content.innerHTML = `
+                        <h3 class="text-2xl font-bold mb-4">Phòng của bạn</h3>
+                        <p class="mb-4">Gửi mã này cho bạn bè:</p>
+                        <div class="bg-gray-200 dark:bg-gray-700 p-4 rounded-lg text-4xl font-bold tracking-widest mb-6 cursor-pointer" id="room-id-display">${roomId}</div>
+                        <p class="text-lg">Đang chờ người chơi khác vào...</p>
+                        <button class="mt-6 text-gray-500" id="back-to-online-options">Quay lại</button>
+                    `;
+                    document.getElementById('room-id-display').onclick = () => {
+                        navigator.clipboard.writeText(roomId).then(() => App.showNotification('Đã sao chép mã phòng!'));
+                    };
+                    document.getElementById('back-to-online-options').onclick = () => this.showOnlineOptions(gameId);
+                }
+            },
+
+            showView(view) {
+                this.homeScreen.classList.add('hidden');
+                this.gameScreen.classList.add('hidden');
+                view.classList.remove('hidden');
+            },
+
+            startGame(gameId, mode, onlinePayload = {}) {
+                this.showView(this.gameScreen);
+                const gameModule = GAMES[gameId].module;
+                this.activeGameModule = gameModule;
+                if (this.activeGameModule) {
+                    this.activeGameModule.init(this.gameScreen, this.goHome.bind(this), mode, onlinePayload);
+                }
+            },
+
+            goHome() {
+                this.showView(this.homeScreen);
+                this.gameScreen.innerHTML = '';
+                if (this.activeGameModule && this.activeGameModule.cleanup) {
+                    this.activeGameModule.cleanup();
+                }
+                this.activeGameModule = null;
+                if (OnlineManager.ws) {
+                    OnlineManager.ws.close();
+                    OnlineManager.ws = null;
+                }
+            },
+            
+            showNotification(message, type = 'info') {
+                const el = document.createElement('div');
+                const colors = { info: 'bg-blue-500', success: 'bg-green-500', error: 'bg-red-500' };
+                el.className = `fixed bottom-5 right-5 p-4 rounded-lg text-white shadow-lg ${colors[type]} z-50 transform translate-y-20 opacity-0 transition-all duration-300`;
+                el.textContent = message;
+                document.body.appendChild(el);
+                setTimeout(() => {
+                    el.classList.remove('translate-y-20', 'opacity-0');
+                }, 10);
+                setTimeout(() => {
+                    el.classList.add('translate-y-20', 'opacity-0');
+                    setTimeout(() => el.remove(), 300);
+                }, 3000);
+            },
+            
+            registerServiceWorker() {
+                 if ('serviceWorker' in navigator) {
+                    navigator.serviceWorker.register(
+                        'data:application/javascript,' +
+                        'self.addEventListener("fetch", (e) => { /* no-op */ });'
+                    ).then(reg => console.log('Service Worker registered.'))
+                     .catch(err => console.log('Service Worker registration failed:', err));
+                }
             }
+        };
+
+        // --- INITIALIZE THE APP ---
+        document.addEventListener('DOMContentLoaded', () => {
+            App.init();
         });
     </script>
-
 </body>
 </html>
